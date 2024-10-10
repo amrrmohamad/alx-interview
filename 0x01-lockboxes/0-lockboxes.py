@@ -16,7 +16,7 @@ def find_next_opened_box(boxes):
     return None
 
 
-def can_unlock_all(boxes):
+def canUnlockAll(boxes):
     """Check if all boxes can be opened
     Args:
         boxes (list): List which contain all the boxes with the keys
@@ -58,7 +58,7 @@ def can_unlock_all(boxes):
 
 def main():
     """Entry point"""
-    can_unlock_all([[]])
+    canUnlockAll([[]])
 
 
 if __name__ == '__main__':
