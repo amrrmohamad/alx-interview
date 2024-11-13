@@ -1,17 +1,19 @@
 #!/usr/bin/node
 
-const request = require('request');
-//https://swapi-api.hbtn.io/api/films/
-request('https://swapi-api.alx-tools.com/api/' + process.argv[2], function (err, res, body) {
-  if (err) throw err;
-  const actors = JSON.parse(body).characters;
-  exactOrder(actors, 0);
-});
-const exactOrder = (actors, x) => {
-  if (x === actors.length) return;
-  request(actors[x], function (err, res, body) {
-    if (err) throw err;
-    console.log(JSON.parse(body).name);
-    exactOrder(actors, x + 1);
-  });
-};
+const axios = require('axios');
+
+async function getCharacters(movieId) {
+  try {
+    const movieResponse = await axios.get('https://swapi-api.hbtn.io/api/films/' + movieId);
+    const actors = movieResponse.data.characters;
+
+    for (const actorUrl of actors) {
+      const actorResponse = await axios.get(actorUrl);
+      console.log(actorResponse.data.name);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getCharacters(process.argv[2]);
