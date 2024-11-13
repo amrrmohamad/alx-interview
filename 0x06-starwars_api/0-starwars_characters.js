@@ -4,7 +4,7 @@ const axios = require('axios');
 
 async function getCharacters(movieId) {
   try {
-    const movieResponse = await axios.get('https://swapi-api.hbtn.io/api/films/' + movieId);
+    const movieResponse = await axios.get('https://swapi-api.alx-tools.com/api/films/' + movieId);
     const actors = movieResponse.data.characters;
 
     for (const actorUrl of actors) {
